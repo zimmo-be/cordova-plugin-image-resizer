@@ -49,21 +49,46 @@ static NSInteger count = 0;
 
     }];
 
-    NSLog(@"image resizer:%@",  (sourceImage  ? @"image exsist" : @"null" ));
+    // NSLog(@"image resizer:%@",  (sourceImage  ? @"image exsist" : @"null" ));
 
+    // UIImage *tempImage = nil;
+    // CGSize targetSize = frameSize;
+    // UIGraphicsBeginImageContext(targetSize);
+
+    // CGRect thumbnailRect = CGRectMake(0, 0, 0, 0);
+    // thumbnailRect.origin = CGPointMake(0.0,0.0);
+    // thumbnailRect.size.width  = targetSize.width;
+    // thumbnailRect.size.height = targetSize.height;
+
+    // [sourceImage drawInRect:thumbnailRect];
+
+    // tempImage = UIGraphicsGetImageFromCurrentImageContext();
+    // NSLog(@"image resizer:%@",  (tempImage  ? @"image exsist" : @"null" ));
+
+    NSLog(@"image resizer:%@ to %f, %f",  (sourceImage  ? @"image exist" : @"null" ), frameSize.width, frameSize.height);
+    NSLog(@"image org size: %f, %f",  sourceImage.size.width, sourceImage.size.height);
+
+    /* keep aspect ratio */
+    CGSize imageSize = sourceImage.size;
+    CGSize viewSize = CGSizeMake(frameSize.width, frameSize.height); // size in which you want to draw
+    float hfactor = imageSize.width / viewSize.width;
+    float vfactor = imageSize.height / viewSize.height;
+    float factor = fmax(hfactor, vfactor);
+    float newWidth = imageSize.width / factor;
+    float newHeight = imageSize.height / factor;
+    CGRect thumbnailRect = CGRectMake(0, 0, newWidth, newHeight);
+
+    NSLog(@"image new size: %f, %f",  newWidth, newHeight);
+
+    // prepare context
     UIImage *tempImage = nil;
     CGSize targetSize = frameSize;
+    targetSize.width = newWidth;
+    targetSize.height = newHeight;
     UIGraphicsBeginImageContext(targetSize);
 
-    CGRect thumbnailRect = CGRectMake(0, 0, 0, 0);
-    thumbnailRect.origin = CGPointMake(0.0,0.0);
-    thumbnailRect.size.width  = targetSize.width;
-    thumbnailRect.size.height = targetSize.height;
-
+    // draw in new
     [sourceImage drawInRect:thumbnailRect];
-
-    tempImage = UIGraphicsGetImageFromCurrentImageContext();
-    NSLog(@"image resizer:%@",  (tempImage  ? @"image exsist" : @"null" ));
 
     UIGraphicsEndImageContext();
     NSData *imageData = UIImageJPEGRepresentation(tempImage, [quality floatValue] / 100.0f );
