@@ -90,6 +90,9 @@ static NSInteger count = 0;
     // draw in new
     [sourceImage drawInRect:thumbnailRect];
 
+    tempImage = UIGraphicsGetImageFromCurrentImageContext();
+    NSLog(@"image resizer:%@",  (tempImage  ? @"image exsist" : @"null" ));
+
     UIGraphicsEndImageContext();
     NSData *imageData = UIImageJPEGRepresentation(tempImage, [quality floatValue] / 100.0f );
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
