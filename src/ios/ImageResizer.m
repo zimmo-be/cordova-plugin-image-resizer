@@ -97,7 +97,7 @@ static NSInteger count = 0;
     NSData *imageData = UIImageJPEGRepresentation(tempImage, [quality floatValue] / 100.0f );
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"img%d.jpeg",count]];
+    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"img%d.jpg",count]];
     count++;
     CDVPluginResult* result = nil;
 
