@@ -1,0 +1,20 @@
+{
+  "name": "cordova-plugin-image-resizer",
+  "version": "1.0.0",
+  "description": "By: Protonet GmbH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zimmo-be/cordova-plugin-image-resizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zimmo-be/cordova-plugin-image-resizer/issues"
+  },
+  "homepage": "https://github.com/zimmo-be/cordova-plugin-image-resizer#readme"
+}
